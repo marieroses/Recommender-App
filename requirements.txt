@@ -5,3 +5,4 @@ openai
 seaborn
 matplotlib
 streamlit
+openpyxl
