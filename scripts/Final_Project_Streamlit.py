@@ -1,13 +1,11 @@
 import os
 import streamlit as st
 import pandas as pd
-import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import PCA
 from sklearn.metrics.pairwise import cosine_similarity
 
 # Load needed data computed in the Final_Project.py script
-# This gets the folder where *this script* is located
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def load_jobs():
@@ -28,8 +26,6 @@ skills=load_skills()
 #Extracting unique domains of interest from the jobs dataset
 student_domains= jobs['Domain of Interest'].dropna().unique()
 
-
-
 # Setting up the UI configuration and style using streamlit
 st.set_page_config(page_title="Career Path Recommender System", layout='wide')
 st.title("Career Path Recommender System")
@@ -38,7 +34,6 @@ st.markdown("""<style>
     body {background-color: #e6f2ff;}
     .stApp {background-color: #e6f2ff;}
     </style>""", unsafe_allow_html=True)
-
 
 #Define input parameters for the user to select from (domain and skills)
 selected_domain = st.selectbox("Select a domain of interest", options=student_domains, index=None)
@@ -85,7 +80,7 @@ if selected_skills and selected_domain:
         st.markdown(f"{i}. {rec['occupation']}")
         st.markdown(f"Similarity Score: {rec['similarity']}%")
         st.markdown(f"{rec['description']}", unsafe_allow_html=True)
-        st.markdown("---")
+        st.markdown("---")  
 
 
        
